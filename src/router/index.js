@@ -7,6 +7,7 @@ import Home from '../views/home/Home'
 import VideoList from '../views/videolist/VideoList'
 import ImageList from '../views/imagelist/ImageList'
 import ImageBanner from '../views/imagebanner/ImageBanner'
+import VideoPlayer from '../views/videoplayer/VideoPlayer'
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +25,11 @@ export default new Router({
       path: '/videolist',
       name: 'videolist',
       component: VideoList
+    },
+    {
+      path: '/video/:id',
+      name: 'videoPlayer',
+      component: VideoPlayer
     },
     {
       path: '/images',

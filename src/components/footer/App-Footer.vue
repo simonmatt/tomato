@@ -17,15 +17,15 @@
           </svg>
         </a>
       </p>
-      <span class="copy">Copyright © 2017 | <a href="https://github.com/xxxgitone" target="_bank">XUTHUS</a></span>
+      <span class="copy">Copyright © 2018 | <a href="https://github.com/simonmatt" target="_bank">MATT</a></span>
     </footer>
 </template>
 <script>
 export default {};
 </script>
 <style lang="scss" scoped>
-@import "src/assets/scss/variables.scss";
-@import "src/assets/scss/mixins.scss";
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
 
 .footer {
   background: $mainBlack;
