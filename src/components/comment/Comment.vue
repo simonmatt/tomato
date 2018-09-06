@@ -29,7 +29,7 @@
       <button class="submitButton" @click="postComment(comment)">Submit</button>
     </div>
   </div>
-  <ul v-if="childComponents.length > 0">
+  <ul v-if="childComments.length > 0">
     <template v-for="child in childComments">
       <li class="comment-item">
         <span class="auth-avatar">
@@ -48,7 +48,7 @@
               <svg class="icon" aria-hidden="true" >
                 <use xlink:href="#icon-zan2"></use>
               </svg>
-            {{ child.supporter && child.supporter }}
+            {{ child.supporter }}
             </span>
           </div>
         </div>
