@@ -13,7 +13,9 @@ router.get('/users', (req, res, next) => {
 })
 // Get single user by id
 router.get('/users/:id', (req, res, next) => {
+  const id = req.params.id;
   User.findById({ _id: id }).then(user => {
+    console.log(user);
     res.send(user);
   }).catch(next);
 })
@@ -112,4 +114,4 @@ router.delete('/users/:id', (req, res, next) => {
   }).catch(next);
 })
 
-module.exports=router;
+module.exports = router;

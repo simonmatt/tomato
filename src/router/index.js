@@ -8,6 +8,10 @@ import VideoList from '../views/videolist/VideoList'
 import ImageList from '../views/imagelist/ImageList'
 import ImageBanner from '../views/imagebanner/ImageBanner'
 import VideoPlayer from '../views/videoplayer/VideoPlayer'
+import PersonalPage from '../views/personalpage/PersonalPage'
+import VideoPost from '../views/videopost/VideoPost'
+import PostSuccess from '../views/success/PostSuccess'
+import Chat from '../views/chat/Chat'
 Vue.use(Router)
 
 export default new Router({
@@ -32,18 +36,44 @@ export default new Router({
       component: VideoPlayer
     },
     {
+      path: '/post/video',
+      name: 'videopost',
+      component: VideoPost,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/post/success',
+      name: 'success',
+      component: PostSuccess,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '/images',
       name: 'imagelist',
       component: ImageList,
-      children: [{
-        path: ':id',
-        component: ImageBanner
-      }]
+      children: [
+        {
+          path: ':id',
+          component: ImageBanner
+        }
+      ]
     },
     {
       path: '/page',
       name: 'page',
-      //component: PersonalPage,
+      component: PersonalPage,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: Chat,
       meta: {
         requireAuth: true
       }

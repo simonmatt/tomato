@@ -24,7 +24,7 @@ const mutations = {
 
   [types.FETCH_VIDEOS_BY_USERID](state, id) {
     fetchVideoByUserid(id).then(res => {
-      state.userInfo = res.data
+      state.userVideos = res.data
     })
   },
 

@@ -2,7 +2,18 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const history=require('connect-history-api-fallback')
+// const whiteList = ['http://localhost:8082']
+// const corsOptions = {
+//   credentials: true,
+//   origin: (origin, callback) => {
+//     if (whiteList.includes(origin)) {
+//       console.log(origin);
+//       return callback(null, true)
+//     }
+//     callback(new Error('Not allowed by CORS'))
+//   }
+// }
+const history = require('connect-history-api-fallback')
 
 const userRoutes = require('./server/api/user')
 const videoRoutes = require('./server/api/video')
@@ -37,6 +48,7 @@ app.use('/api', uploadRoutes)
 app.use(history())
 
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(442).send({
     error: err
   });
@@ -44,5 +56,46 @@ app.use((err, req, res, next) => {
 
 
 const server = app.listen(4001, () => {
-  console.log(`Express started in ${app.get('env')} mode on http://localhost:4001`);
+  console.log(`Express started in ${env} mode on http://localhost:4001`);
+})
+
+const socket = require('socket.io');
+const io = socket(server);
+let onlineUsers = [];
+
+io.on('connect', (socket) => {
+  console.log('Access in...');
+  socket.on('online', user => {
+    if (onlineUsers.length > 0) {
+      const onlineUser = onlineUsers.find(ou => ou.name === user.name);
+      if (!onlineUser && user.name) {
+        onlineUsers.push(onlineUser);
+      }
+    } else {
+      if (user.name) {
+        onlineUsers.push(user);
+      }
+    }
+    socket.name = user.name;
+    io.sockets.emit('online', onlineUsers);
+    socket.broadcast.emit('join', {
+      name: user.name,
+      type: 'join'
+    })
+  });
+
+  socket.on('chat', data => {
+    io.sockets.emit('chat', data);
+  });
+
+  socket.on('disconnect', () => {
+    const onlineUser = onlineUsers.find(ou => ou.name === socket.name);
+    const index = onlineUsers.indexOf(onlineUser);
+    onlineUsers.splice(index, 1);
+    io.sockets.emit('online', onlineUser);
+    socket.broadcast.emit('user left', {
+      name: socket.name,
+      type: 'left'
+    });
+  });
 })

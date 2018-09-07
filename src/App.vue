@@ -3,7 +3,7 @@
     <header class="header" :class="{ headerBg: !isHome || scrolled}">
       <div class="navWrap" :class="{open: isOpen}">
          <div class="logoWrapper">
-          <span class="logo"><router-link :to="'/'">vn-pastime</router-link></span>
+          <span class="logo"><router-link :to="'/'">TOMATO</router-link></span>
           <span class="menu-control" @click="openNav">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-menu"></use>
@@ -122,7 +122,7 @@ export default {
   width: 100%;
   height: 3.75rem;
   position: fixed;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(rgba(34, 33, 33, 0.2), rgba(0, 0, 0, 0.3));
   padding: 0 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   z-index: 1;
