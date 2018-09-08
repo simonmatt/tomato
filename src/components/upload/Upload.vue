@@ -15,6 +15,7 @@
 </div>
 </template>
 <script>
+import { upload } from "../../api/upload.js";
 export default {
   data() {
     return {
@@ -42,6 +43,12 @@ export default {
       const formData = new FormData();
       formData.append("file", this.file);
       console.log(formData);
+      upload(formData).then(res => {
+        if (res.data.success) {
+          this.showFlag=false;
+        }
+        console.log(res.data);
+      });
     },
     switchFlag() {
       this.showFlag = !this.showFlag;
@@ -58,7 +65,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../assets/scss/mixins.scss";
- .upload-box {
+.upload-box {
   position: fixed;
   width: 20rem;
   height: 20rem;

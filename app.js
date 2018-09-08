@@ -49,6 +49,7 @@ app.use(history())
 
 app.use((err, req, res, next) => {
   console.log(err);
+  console.log(req);
   res.status(442).send({
     error: err
   });

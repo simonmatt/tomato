@@ -61,7 +61,8 @@ export default {
   methods: {
     fetchUser() {
       const id = this.$route.query.user;
-      console.log(this.$route);
+      console.log("$route", this.$route);
+      console.log("$router", this.$router);
       this.$store.commit("FETCH_USER_INFO", id);
     },
     switchShowFlag() {
@@ -80,12 +81,12 @@ export default {
 @import "../../assets/scss/mixins.scss";
 
 .personalPage {
-    @include stickFooter;
-    @include mediaQ(480px) {
-      padding-top: 3rem;
-    }
-    background: #eee;
-    padding-bottom: 1rem;
+  @include stickFooter;
+  @include mediaQ(480px) {
+    padding-top: 3rem;
+  }
+  background: #eee;
+  padding-bottom: 1rem;
 }
 
 .personalInfo {
@@ -103,18 +104,21 @@ export default {
 
   .page-mask {
     position: absolute;
-    top: 0;left: 0;bottom: 0;right: 0;
-    background: rgba(0, 0, 0, .5);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
     @include flexCenter;
     flex-direction: column;
 
     .avatar {
       width: 10rem;
       height: 10rem;
-      background: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 10px;
-      box-shadow: inset 5px 5px 5px rgba(0, 0, 0, .1);
-      padding: .3rem;
+      box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.1);
+      padding: 0.3rem;
     }
 
     .name {
