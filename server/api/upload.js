@@ -3,9 +3,11 @@ const router = express.Router()
 const multer = require('multer')
 
 const storage = multer.diskStorage({
+  // setting the upload path
   destination: function (req, file, cb) {
     cb(null, './public/images')
   },
+  // renname the uploaded file and 
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
