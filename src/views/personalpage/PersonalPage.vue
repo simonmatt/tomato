@@ -2,7 +2,7 @@
 <div>
   <div class="personalPage">
     <div class="personalInfo">
-      <img src="https://1x.com/images/user/7059ae85778abd28a685d4fab79fb997-hd2.jpg">
+      <img src="https://1x.com/images/user/7059ae85778abd28a685d4fab79fb997-hd2.jpg" class="banner">
       <div class="page-mark">
         <img :src="userInfo.avatar_url" alt="" class="avatar">
         <div class="name">{{userInfo.name}}</div>
@@ -97,7 +97,7 @@ export default {
     height: 23rem;
   }
 
-  img {
+  .banner {
     max-height: 100%;
     width: 100%;
   }
